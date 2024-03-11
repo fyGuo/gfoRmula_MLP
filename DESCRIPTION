@@ -1,4 +1,4 @@
-Package: gfoRmula_MLP
+Package: gfoRmulaMLP
 Title: Parametric G-Formula
 Version: 1.0.4
 Authors@R: c(person("Victoria", "Lin", role = c("aut"), 
