@@ -20,6 +20,8 @@ gformula(
   outcome_name,
   outcome_type,
   ymodel,
+  baseline_prodp0 = 1,
+  baseline_poprisk = 0,
   compevent_name = NULL,
   compevent_model = NA,
   compevent_cens = FALSE,
@@ -99,6 +101,10 @@ in \code{histories} is to be applied.}
 \item{outcome_type}{Character string specifying the "type" of outcome. The possible "types" are: \code{"survival"}, \code{"continuous_eof"}, and \code{"binary_eof"}.}
 
 \item{ymodel}{Model statement for the outcome variable.}
+
+\item{baseline_prodp0}{Baseline cumulative probability of not experiencing the event of interest. Default to be 1}
+
+\item{baseline_poprisk}{Baseline cumulative risk of experiencing the event of interest. Default to be 0.}
 
 \item{compevent_name}{Character string specifying the name of the competing event variable in \code{obs_data}. Only applicable for survival outcomes.}
 

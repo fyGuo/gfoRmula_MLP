@@ -19,6 +19,8 @@ gformula_survival(
   basecovs = NA,
   outcome_name,
   ymodel,
+  baseline_prodp0 = 1,
+  baseline_poprisk = 0,
   compevent_name = NULL,
   compevent_model = NA,
   compevent_cens = FALSE,
@@ -96,6 +98,10 @@ in \code{histories} is to be applied.}
 \item{outcome_name}{Character string specifying the name of the outcome variable in \code{obs_data}.}
 
 \item{ymodel}{Model statement for the outcome variable.}
+
+\item{baseline_prodp0}{Baseline cumulative probability of not experiencing the event of interest. Default to be 1}
+
+\item{baseline_poprisk}{Baseline cumulative risk of experiencing the event of interest. Default to be 0.}
 
 \item{compevent_name}{Character string specifying the name of the competing event variable in \code{obs_data}.}
 

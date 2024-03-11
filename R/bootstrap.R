@@ -10,6 +10,8 @@
 #' @param obs_data                Data table containing the observed data.
 #' @param bootseeds               Vector of integers specifying the seeds. One seed is used to initialize each bootstrap iteration.
 #' @param outcome_type            Character string specifying the "type" of the outcome. The possible "types" are: \code{"survival"}, \code{"continuous_eof"}, and \code{"binary_eof"}.
+#' @param baseline_prodp0         Baseline cumulative probability of not experiencing the event of interest. Default to be 1
+#' @param baseline_poprisk        Baseline cumulative risk of experiencing the event of interest. Default to be 0.
 #' @param intvars                 List, whose elements are vectors of character strings. The kth vector in \code{intvars} specifies the name(s) of the variable(s) to be intervened
 #'                                on in each round of the simulation under the kth intervention in \code{interventions}.
 #' @param interventions           List, whose elements are lists of vectors. Each list in \code{interventions} specifies a unique intervention on the relevant variable(s) in \code{intvars}. Each vector contains a function
@@ -113,6 +115,8 @@
 #' @keywords internal
 #' @import data.table
 bootstrap_helper <- function(r, time_points, obs_data, bootseeds, outcome_type,
+                             baseline_prodp0 = 1, #added by Fuyu
+                             baseline_poprisk = 0, #added by Fuyu
                              intvars, interventions, int_times, ref_int,
                              covparams, covnames, covtypes, covfits_custom, covpredict_custom, basecovs, histvars, histvals, histories,
                              ymodel, yrestrictions, compevent_restrictions, restrictions,
@@ -189,6 +193,8 @@ bootstrap_helper <- function(r, time_points, obs_data, bootseeds, outcome_type,
              basecovs = basecovs,
              comprisk = comprisk, ranges = ranges,
              outcome_type = outcome_type,
+             baseline_prodp0 = baseline_prodp0, # added by Fuyu
+             baseline_poprisk = baseline_poprisk, #added by Fuyu
              subseed = bootseeds[r], time_points = time_points,
              obs_data = resample_data, parallel = FALSE, max_visits = max_visits,
              baselags = baselags, below_zero_indicator = below_zero_indicator,
@@ -327,6 +333,8 @@ bootstrap_helper <- function(r, time_points, obs_data, bootseeds, outcome_type,
 
 
 bootstrap_helper_with_trycatch <- function(r, time_points, obs_data, bootseeds, outcome_type,
+                             baseline_prodp0 = 1, #added by Fuyu
+                             baseline_poprisk = 0, #added by Fuyu
                              intvars, interventions, int_times, ref_int,
                              covparams, covnames, covtypes, covfits_custom, covpredict_custom, basecovs, histvars, histvals, histories,
                              ymodel, yrestrictions, compevent_restrictions, restrictions,
@@ -339,6 +347,7 @@ bootstrap_helper_with_trycatch <- function(r, time_points, obs_data, bootseeds, 
   tryCatch({
     bootstrap_helper(
       r = r, time_points = time_points, obs_data = obs_data, bootseeds = bootseeds, outcome_type = outcome_type,
+      baseline_prodp0 = baseline_prodp0, baseline_poprisk = baseline_poprisk,# added by Fuyu
       intvars = intvars, interventions = interventions, int_times = int_times, ref_int = ref_int,
       covparams = covparams, covnames = covnames, covtypes = covtypes, covfits_custom = covfits_custom, covpredict_custom = covpredict_custom, basecovs = basecovs, histvars = histvars, histvals = histvals, histories = histories,
       ymodel = ymodel, yrestrictions = yrestrictions, compevent_restrictions = compevent_restrictions, restrictions = restrictions,

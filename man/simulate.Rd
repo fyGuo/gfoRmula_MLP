@@ -6,6 +6,8 @@
 \usage{
 simulate(
   o,
+  baseline_prodp0 = 1,
+  baseline_poprisk = 0,
   fitcov,
   fitY,
   fitD,
@@ -45,6 +47,10 @@ simulate(
 }
 \arguments{
 \item{o}{Integer specifying the index of the current intervention.}
+
+\item{baseline_prodp0}{Baseline cumulative probability of not experiencing the event of interest. Default to be 1}
+
+\item{baseline_poprisk}{Baseline cumulative risk of experiencing the event of interest. Default to be 0.}
 
 \item{fitcov}{List of model fits for the time-varying covariates.}
 

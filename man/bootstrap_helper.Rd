@@ -10,6 +10,8 @@ bootstrap_helper(
   obs_data,
   bootseeds,
   outcome_type,
+  baseline_prodp0 = 1,
+  baseline_poprisk = 0,
   intvars,
   interventions,
   int_times,
@@ -59,6 +61,10 @@ bootstrap_helper(
 \item{bootseeds}{Vector of integers specifying the seeds. One seed is used to initialize each bootstrap iteration.}
 
 \item{outcome_type}{Character string specifying the "type" of the outcome. The possible "types" are: \code{"survival"}, \code{"continuous_eof"}, and \code{"binary_eof"}.}
+
+\item{baseline_prodp0}{Baseline cumulative probability of not experiencing the event of interest. Default to be 1}
+
+\item{baseline_poprisk}{Baseline cumulative risk of experiencing the event of interest. Default to be 0.}
 
 \item{intvars}{List, whose elements are vectors of character strings. The kth vector in \code{intvars} specifies the name(s) of the variable(s) to be intervened
 on in each round of the simulation under the kth intervention in \code{interventions}.}
