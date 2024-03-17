@@ -54,6 +54,7 @@ predict_trunc_normal <- function(x, mean, est_sd, a, b){
 #' @param o                       Integer specifying the index of the current intervention.
 #' @param baseline_prodp0         Baseline cumulative probability of not experiencing the event of interest. Default to be 1
 #' @param baseline_poprisk        Baseline cumulative risk of experiencing the event of interest. Default to be 0.
+#' @param baseline_prodd0         Baseline cumulative probability of not experiencing the competing event. Default to be 1.
 #' @param fitcov                  List of model fits for the time-varying covariates.
 #' @param fitY                    Model fit for the outcome variable.
 #' @param fitD                    Model fit for the competing event variable, if any.
@@ -139,6 +140,7 @@ predict_trunc_normal <- function(x, mean, est_sd, a, b){
 simulate <- function(o,
                      baseline_prodp0 = 1,
                      baseline_poprisk = 0,
+                     baseline_prodd0 = 1,
                      fitcov, fitY, fitD,
                      yrestrictions, compevent_restrictions, restrictions,
                      outcome_name, compevent_name, time_name,
@@ -292,8 +294,8 @@ simulate <- function(o,
           set(newdf, j = 'D', value = stats::rbinom(data_len, 1, newdf$Pd))
           # Calculate probability of death by main event rather than competing event at
           # time t
-          set(newdf, j = 'prodp1', value = newdf$Py * (1 - newdf$Pd) * baseline_prodp0)
-          set(newdf, j = 'prodd0', value = 1 - newdf$Pd)
+          set(newdf, j = 'prodp1', value = newdf$Py * (1 - newdf$Pd) * baseline_prodp0 * baseline_prodd0) # added by Fuyu
+          set(newdf, j = 'prodd0', value = (1 - newdf$Pd)* baseline_prodd0)
         } else {
           set(newdf, j = 'D', value = 0)
           # Calculate probability of death by main event without competing event

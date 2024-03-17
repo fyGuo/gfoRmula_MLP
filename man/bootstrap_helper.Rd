@@ -12,6 +12,7 @@ bootstrap_helper(
   outcome_type,
   baseline_prodp0 = 1,
   baseline_poprisk = 0,
+  baseline_propdd0 = 1,
   intvars,
   interventions,
   int_times,
@@ -65,6 +66,8 @@ bootstrap_helper(
 \item{baseline_prodp0}{Baseline cumulative probability of not experiencing the event of interest. Default to be 1}
 
 \item{baseline_poprisk}{Baseline cumulative risk of experiencing the event of interest. Default to be 0.}
+
+\item{baseline_propdd0}{Baseline cumulative probability of not experiencing the competing event. Default to be 1}
 
 \item{intvars}{List, whose elements are vectors of character strings. The kth vector in \code{intvars} specifies the name(s) of the variable(s) to be intervened
 on in each round of the simulation under the kth intervention in \code{interventions}.}

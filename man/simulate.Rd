@@ -8,6 +8,7 @@ simulate(
   o,
   baseline_prodp0 = 1,
   baseline_poprisk = 0,
+  baseline_prodd0 = 1,
   fitcov,
   fitY,
   fitD,
@@ -51,6 +52,8 @@ simulate(
 \item{baseline_prodp0}{Baseline cumulative probability of not experiencing the event of interest. Default to be 1}
 
 \item{baseline_poprisk}{Baseline cumulative risk of experiencing the event of interest. Default to be 0.}
+
+\item{baseline_prodd0}{Baseline cumulative probability of not experiencing the competing event. Default to be 1.}
 
 \item{fitcov}{List of model fits for the time-varying covariates.}
 

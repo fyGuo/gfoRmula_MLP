@@ -72,6 +72,7 @@
 #' @param ymodel                  Model statement for the outcome variable.
 #' @param baseline_prodp0         Baseline cumulative probability of not experiencing the event of interest. Default to be 1
 #' @param baseline_poprisk        Baseline cumulative risk of experiencing the event of interest. Default to be 0.
+#' @param baseline_prodd0         Baseline cumulative probability of not experiencing the competing event. Default to be 1.
 #' @param yrestrictions           List of vectors. Each vector containins as its first entry
 #'                                a condition and its second entry an integer. When the
 #'                                condition is \code{TRUE}, the outcome variable is simulated
@@ -347,6 +348,7 @@ gformula <- function(obs_data, id, time_points = NULL,
                      outcome_name, outcome_type, ymodel,
                      baseline_prodp0 = 1,
                      baseline_poprisk = 0,
+                     baseline_prodd0 = 1,
                      compevent_name = NULL, compevent_model = NA,
                      compevent_cens = FALSE,
                      censor_name = NULL, censor_model = NA,
@@ -374,6 +376,7 @@ gformula <- function(obs_data, id, time_points = NULL,
                       ymodel = ymodel,
                       baseline_prodp0 = baseline_prodp0, # added by Fuyu
                       baseline_poprisk = baseline_poprisk, #added by Fuyu
+                      baseline_prodd0 = baseline_prodd0, #added by Fuyu
                       compevent_name = compevent_name,
                       compevent_model = compevent_model,
                       compevent_cens = compevent_cens,
@@ -516,6 +519,7 @@ gformula <- function(obs_data, id, time_points = NULL,
 #' @param ymodel                  Model statement for the outcome variable.
 #' @param baseline_prodp0         Baseline cumulative probability of not experiencing the event of interest. Default to be 1
 #' @param baseline_poprisk        Baseline cumulative risk of experiencing the event of interest. Default to be 0.
+#' @param baseline_prodd0         Baseline cumulative probability of experiencing the event of interest. Default to be 1.
 #' @param yrestrictions           List of vectors. Each vector containins as its first entry
 #'                                a condition and its second entry an integer. When the
 #'                                condition is \code{TRUE}, the outcome variable is simulated
@@ -713,6 +717,7 @@ gformula_survival <- function(obs_data, id, time_points = NULL,
                               outcome_name, ymodel,
                               baseline_prodp0 = 1, # added by Fuyu
                               baseline_poprisk = 0, # added by Fuyu
+                              baseline_prodd0 = 1, # added by Fuyu
                               compevent_name = NULL, compevent_model = NA,
                               compevent_cens = FALSE,
                               censor_name = NULL, censor_model = NA,
@@ -769,7 +774,12 @@ gformula_survival <- function(obs_data, id, time_points = NULL,
               covnames = covnames, covtypes = covtypes, basecovs = basecovs,
               histvars = histvars, histories = histories, compevent_model = compevent_model,
               hazardratio = hazardratio, intcomp = intcomp, time_points = time_points,
-              outcome_type = outcome_type, time_name = time_name,
+              outcome_type = outcome_type,
+              baseline_poprisk = baseline_poprisk, #added by Fuyu
+              baseline_prodp0 = baseline_prodp0, #added by Fuyu
+              baseline_prodd0 = baseline_prodd0, # added by Fuyu
+
+              time_name = time_name,
               obs_data = obs_data, parallel = parallel, ncores = ncores,
               nsamples = nsamples, sim_data_b = sim_data_b,
               outcome_name = outcome_name, compevent_name = compevent_name,
@@ -972,6 +982,7 @@ gformula_survival <- function(obs_data, id, time_points = NULL,
                                  outcome_type = outcome_type,
                                  baseline_prodp0 = baseline_prodp0, # added by Fuyu
                                  baseline_poprisk = baseline_poprisk, # added by Fuyu
+                                 baseline_prodd0 = baseline_prodd0, # added by Fuyu
                                  subseed = subseed, time_points = time_points,
                                  obs_data = obs_data, parallel = parallel, max_visits = max_visits,
                                  baselags = baselags, below_zero_indicator = below_zero_indicator,
@@ -994,6 +1005,7 @@ gformula_survival <- function(obs_data, id, time_points = NULL,
                outcome_type = outcome_type,
                baseline_prodp0 = baseline_prodp0, # added by Fuyu
                baseline_poprisk = baseline_poprisk, # added by Fuyu
+               baseline_prodd0 = baseline_prodd0, # added by Fuyu
                subseed = subseed, time_points = time_points,
                obs_data = obs_data, parallel = parallel, max_visits = max_visits,
                baselags = baselags, below_zero_indicator = below_zero_indicator,
@@ -1077,6 +1089,7 @@ gformula_survival <- function(obs_data, id, time_points = NULL,
                                       basecovs = basecovs, ymodel = ymodel,
                                       baseline_prodp0 = baseline_prodp0, # added by Fuyu
                                       baseline_poprisk = baseline_poprisk, # added by Fuyu
+                                      baseline_prodd0 = baseline_prodd0, # added by Fuyu
                                       histvars = histvars, histvals = histvals, histories = histories,
                                       comprisk = comprisk, compevent_model = compevent_model,
                                       yrestrictions = yrestrictions,
@@ -1104,6 +1117,7 @@ gformula_survival <- function(obs_data, id, time_points = NULL,
                          basecovs = basecovs, ymodel = ymodel,
                          baseline_prodp0 = baseline_prodp0, # added by Fuyu
                          baseline_poprisk = baseline_poprisk, # added by Fuyu
+                         baseline_prodd0 = baseline_prodd0, # added by Fuyu
                          histvars = histvars, histvals = histvals, histories = histories,
                          comprisk = comprisk, compevent_model = compevent_model,
                          yrestrictions = yrestrictions,

@@ -28,6 +28,9 @@ error_catch(
   nsamples,
   sim_data_b,
   outcome_name,
+  baseline_prodp0,
+  baseline_poprisk,
+  baseline_prodd0,
   compevent_name,
   comprisk,
   censor,
@@ -94,6 +97,12 @@ simulation.}
 \item{sim_data_b}{Logical scalar indicating whether to return the simulated data set. If bootstrap samples are used (i.e., \code{nsamples} is set to a value greater than 0), this argument must be set to \code{FALSE}.}
 
 \item{outcome_name}{Character string specifying the name of the outcome variable in \code{obs_data}.}
+
+\item{baseline_prodp0}{Baseline cumulative probability of not experiencing the event of interest. Default to be 1}
+
+\item{baseline_poprisk}{Baseline cumulative risk of experiencing the event of interest. Default to be 0.}
+
+\item{baseline_prodd0}{Baseline cumulative probability of experiencing the event of interest. Default to be 1.}
 
 \item{compevent_name}{Character string specifying the name of the competing event variable in \code{obs_data}.}
 

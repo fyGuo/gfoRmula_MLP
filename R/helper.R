@@ -68,6 +68,9 @@ hr_helper <- function(i, intcomp, time_name, pools){
 #' @param nsamples               Integer specifying the number of bootstrap samples to generate.
 #' @param sim_data_b             Logical scalar indicating whether to return the simulated data set. If bootstrap samples are used (i.e., \code{nsamples} is set to a value greater than 0), this argument must be set to \code{FALSE}.
 #' @param outcome_name            Character string specifying the name of the outcome variable in \code{obs_data}.
+#' @param baseline_prodp0         Baseline cumulative probability of not experiencing the event of interest. Default to be 1
+#' @param baseline_poprisk        Baseline cumulative risk of experiencing the event of interest. Default to be 0.
+#' @param baseline_prodd0         Baseline cumulative probability of experiencing the event of interest. Default to be 1.
 #' @param compevent_name          Character string specifying the name of the competing event variable in \code{obs_data}.
 #' @param comprisk                Logical scalar indicating the presence of a competing event.
 #' @param censor                 Logical scalar indicating the presence of a censoring variable in \code{obs_data}.
@@ -87,7 +90,9 @@ error_catch <- function(id, nsimul, intvars, interventions, int_times, int_descr
                         histvars, histories, compevent_model,
                         hazardratio, intcomp, time_points, outcome_type,
                         time_name, obs_data, parallel, ncores, nsamples,
-                        sim_data_b, outcome_name, compevent_name, comprisk,
+                        sim_data_b, outcome_name,
+                        baseline_prodp0, baseline_poprisk, baseline_prodd0,
+                        compevent_name, comprisk,
                         censor, censor_name, covmodels, histvals, ipw_cutoff_quantile,
                         ipw_cutoff_value){
 
